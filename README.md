@@ -35,3 +35,14 @@ The MVP focuses on three systems:
 - WeChat / Feishu / Xuexitong: daily communication, notification, and teaching management.
 - GitHub: formal Challenge publication, submission, review, documentation, and knowledge capture.
 
+## Current File Map
+
+Start here:
+
+- `docs/vision.md`: what Elite20 Builder OS is for
+- `docs/workflow.md`: the main operating workflow
+- `docs/mvp-roadmap.md`: phased MVP plan
+- `challenges/challenge-template.md`: standard Challenge format
+- `challenges/rubric-template.md`: standard scoring format
+- `challenges/sample-challenge-01.md`: first sample Challenge
+- `agents/agent-collaboration-flow.md`: how the first three agents work together
