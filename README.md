@@ -18,6 +18,7 @@ Situation -> Ontology -> Workflow -> Skill -> Task Agent -> Evaluation -> Knowle
 - `agents/`: specifications for the first three task agents
 - `agents/manifests/`: MVP agent manifests aligned with the LLM Agent Interface direction
 - `examples/`: end-to-end cases that show how a Challenge becomes a Cognitive Cell
+- `teams/`: seven Builder Team workspaces aligned with Richard's team structure
 - `knowledge-base/`: examples, FAQ, prompts, and reusable lessons
 - `governance/`: contribution and review rules
 
@@ -52,6 +53,8 @@ Start here:
 - `docs/workflow.md`: the main operating workflow
 - `docs/mvp-roadmap.md`: phased MVP plan
 - `docs/progress-report.md`: Chinese project progress report for group sharing
+- `teams/team-roadmap.md`: seven-team responsibility and folder map
+- `teams/github-submission-guide.md`: whether to use this repo or separate team repos
 - `ontology/challenge-ontology.md`: how Challenge connects to Skill, Agent, Rubric, and Knowledge
 - `challenges/challenge-template.md`: standard Challenge format
 - `challenges/rubric-template.md`: standard scoring format
