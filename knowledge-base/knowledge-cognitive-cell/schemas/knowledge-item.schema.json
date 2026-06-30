@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NSEAP Knowledge Item",
+  "type": "object",
+  "required": ["id", "title", "type", "audience", "tags", "status", "updated"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^kb-[a-z-]+-[0-9]{3}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "type": {
+      "type": "string",
+      "enum": ["overview", "course", "challenge", "prompt", "faq", "best-practice", "project", "agent"]
+    },
+    "audience": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["student", "teacher", "builder", "agent"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "concepts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Concepts represented by this knowledge item. Used for future ontology or knowledge graph mapping."
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Skills connected to this knowledge item. Used for learning path and challenge mapping."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "review", "stable", "sample", "deprecated"]
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "related": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Related knowledge item IDs or file paths."
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["predicate", "target"],
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "enum": ["includes", "requires", "supports", "assessedBy", "usesPrompt", "relatedTo"]
+          },
+          "target": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Optional graph-like relationships for future ontology mapping."
+    }
+  }
+}

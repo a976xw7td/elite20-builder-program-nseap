@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "name": "NSEAP 知识认知细胞 MVP",
+    "version": "0.1.0",
+    "level": "L2 标准化知识库，正在为 L3 Agent-ready 知识库做准备",
+    "position": "面向未来 FDE Workbench 的知识仓库 + 提示词工作室最小原型"
+  },
+  "categories": [
+    { "id": "all", "label": "全部" },
+    { "id": "course", "label": "课程" },
+    { "id": "challenge", "label": "挑战" },
+    { "id": "prompt", "label": "提示词" },
+    { "id": "faq", "label": "FAQ" },
+    { "id": "best-practice", "label": "最佳实践" },
+    { "id": "project", "label": "项目案例" },
+    { "id": "agent", "label": "Agent" }
+  ],
+  "flow": [
+    "场景",
+    "本体",
+    "流程",
+    "技能",
+    "评估",
+    "学习",
+    "知识增长"
+  ],
+  "entries": [
+    {
+      "id": "kb-course-001",
+      "title": "Week 1 课程概览",
+      "type": "course",
+      "status": "sample",
+      "audience": ["学生", "教师", "Agent"],
+      "tags": ["elite20", "vibe-coding", "week-1"],
+      "concepts": ["AI Native 学习", "Vibe Coding", "学习流程"],
+      "skills": ["AI 工具配置", "反思式学习", "基础提示词能力"],
+      "related": ["kb-challenge-001", "kb-prompt-001"],
+      "relationships": [
+        { "predicate": "includes", "target": "kb-challenge-001" },
+        { "predicate": "usesPrompt", "target": "kb-prompt-001" }
+      ],
+      "summary": "Week 1 的课程起点，连接学习目标、第一个挑战和配套提示词。",
+      "situation": "学生或老师需要一个清晰的第一周学习路径。",
+      "ontology": "课程单元、学习目标、挑战、提示词、反思。",
+      "workflow": "配置工具 -> 理解 AI Native 学习方式 -> 完成第一个引导任务 -> 做学习反思。",
+      "skill": "AI 工具配置、基础提示词、反思式学习。",
+      "evaluation": "检查学习者是否理解第一周目标，并能完成一个小型 AI 辅助任务。",
+      "knowledgeGrowth": "Week 1 中出现的高频问题、优秀例子和常见错误，可以沉淀为 FAQ、提示词和挑战说明。",
+      "source": "../knowledge-base/01-course/sample-week-1-overview.md"
+    },
+    {
+      "id": "kb-challenge-001",
+      "title": "构建你的第一个 AI Assistant",
+      "type": "challenge",
+      "status": "sample",
+      "audience": ["学生", "教师", "Agent"],
+      "tags": ["challenge", "ai-assistant", "prompt-engineering"],
+      "concepts": ["AI Assistant", "提示词工程", "学习任务"],
+      "skills": ["定义 Agent 角色", "编写指令提示词", "评估 AI 输出"],
+      "related": ["kb-course-001", "kb-prompt-001"],
+      "relationships": [
+        { "predicate": "requires", "target": "提示词工程" },
+        { "predicate": "usesPrompt", "target": "kb-prompt-001" },
+        { "predicate": "supports", "target": "kb-course-001" }
+      ],
+      "summary": "第一个 PBL 挑战：让学生围绕真实场景设计并测试一个小型 AI Assistant。",
+      "situation": "学习者需要通过一个具体任务理解 AI Agent 是如何被设计出来的。",
+      "ontology": "AI Assistant、角色、提示词、对话、评估、反思。",
+      "workflow": "选择场景 -> 定义助手角色 -> 编写提示词 -> 测试对话 -> 评估效果 -> 修改迭代。",
+      "skill": "提示词工程、角色定义、AI 输出评估。",
+      "evaluation": "从场景清晰度、助手行为具体性、样例对话质量和反思质量进行评价。",
+      "knowledgeGrowth": "优秀提示词可进入 Prompt Studio；常见错误可进入 FAQ；优秀作品可进入项目案例库。",
+      "source": "../knowledge-base/02-challenges/sample-challenge-knowledge.md"
+    },
+    {
+      "id": "kb-prompt-001",
+      "title": "Coding Coach 提示词",
+      "type": "prompt",
+      "status": "sample",
+      "audience": ["学生", "Agent"],
+      "tags": ["coding-coach", "debugging", "learning"],
+      "concepts": ["学习教练", "代码调试", "引导式学习"],
+      "skills": ["提出澄清问题", "解释代码问题", "设计练习任务"],
+      "related": ["kb-course-001", "kb-challenge-001"],
+      "relationships": [
+        { "predicate": "supports", "target": "kb-challenge-001" },
+        { "predicate": "supports", "target": "kb-course-001" }
+      ],
+      "summary": "一个可复用的提示词模式，用于帮助学生调试代码，同时保留学习过程。",
+      "situation": "学生遇到代码问题，需要教练式帮助，而不是直接抄答案。",
+      "ontology": "教练、学习者、代码片段、错误、解释、练习任务。",
+      "workflow": "收集代码和错误 -> 提出澄清问题 -> 解释问题 -> 给出最小修改 -> 布置练习。",
+      "skill": "调试解释、引导提问、练习设计。",
+      "evaluation": "回答应该帮助学生理解概念，并能在类似问题中再次应用。",
+      "knowledgeGrowth": "反复出现的调试模式可以沉淀为 FAQ 或最佳实践条目。",
+      "source": "../knowledge-base/03-prompts/sample-coding-coach-prompt.md"
+    },
+    {
+      "id": "kb-project-001",
+      "title": "AI 学习助手项目案例",
+      "type": "project",
+      "status": "sample",
+      "audience": ["学生", "教师", "Builder", "Agent"],
+      "tags": ["project-case", "ai-assistant", "learning-support"],
+      "concepts": ["AI 学习助手", "学习计划", "学习反思"],
+      "skills": ["定义用户场景", "设计助手提示词", "评估学习支持效果"],
+      "related": ["kb-challenge-001", "kb-prompt-001"],
+      "relationships": [
+        { "predicate": "supports", "target": "kb-challenge-001" },
+        { "predicate": "usesPrompt", "target": "kb-prompt-001" }
+      ],
+      "summary": "一个项目案例：如何设计一个用于学习计划和反思的小型 AI Assistant。",
+      "situation": "学生需要一个轻量助手来规划学习时间，并复盘学习进展。",
+      "ontology": "学习者、学习目标、可用时间、难点、学习计划、反思提示。",
+      "workflow": "收集学习目标 -> 收集时间和难度 -> 生成学习计划 -> 提出反思问题 -> 改进提示词。",
+      "skill": "场景建模、助手提示词设计、结构化对话设计。",
+      "evaluation": "评估学习计划是否有用、问题是否相关、是否能促进反思。",
+      "knowledgeGrowth": "可复用的学习计划提示词、项目样例和技能节点可以回流到知识认知细胞。",
+      "source": "../knowledge-base/06-projects/sample-project-case.md"
+    },
+    {
+      "id": "kb-agent-002",
+      "title": "知识认知细胞",
+      "type": "agent",
+      "status": "draft",
+      "audience": ["Builder", "教师", "Agent"],
+      "tags": ["cognitive-cell", "knowledge-base", "knowledge-agent", "nseap"],
+      "concepts": ["认知细胞", "知识仓库", "提示词工作室", "FDE Workbench"],
+      "skills": ["组织知识", "检索上下文", "校验元数据", "推荐模板"],
+      "related": ["kb-course-001", "kb-challenge-001", "kb-prompt-001"],
+      "relationships": [
+        { "predicate": "includes", "target": "kb-course-001" },
+        { "predicate": "includes", "target": "kb-challenge-001" },
+        { "predicate": "includes", "target": "kb-prompt-001" }
+      ],
+      "summary": "把第 6 组的知识模块建模为一个具有身份、能力和接口的认知细胞。",
+      "situation": "项目需要一个同时服务人和 Agent 的共享知识层。",
+      "ontology": "知识条目、提示词、挑战、项目、概念、技能、关系、Agent。",
+      "workflow": "收集产出 -> 标准化元数据 -> 评审 -> 发布 -> 检索 -> 改进。",
+      "skill": "知识组织、元数据校验、检索准备。",
+      "evaluation": "成功标准是新 Builder 能提交条目，Agent 能识别可用上下文。",
+      "knowledgeGrowth": "使用反馈应持续改进模板、元数据字段和检索质量。",
+      "source": "../knowledge-base/07-agents/knowledge-cognitive-cell.md"
+    }
+  ]
+}

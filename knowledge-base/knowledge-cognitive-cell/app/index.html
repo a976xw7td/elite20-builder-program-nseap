@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NSEAP 知识认知细胞 MVP</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Elite20 Builder Program · 第 6 组</p>
+        <h1>NSEAP 知识认知细胞</h1>
+        <p class="subtitle">AI 学习知识仓库，把课程、挑战、提示词和项目案例整理成可检索、可复用、可持续增长的知识资产。</p>
+      </div>
+      <div class="status-panel" aria-label="MVP 状态">
+        <span class="status-label">模块定位</span>
+        <strong id="mvp-level">加载中</strong>
+        <small>第 6 组负责把分散资料沉淀为结构化知识，为后续 Agent 检索和教学复用做准备。</small>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="知识筛选器">
+        <section class="panel">
+          <h2>筛选</h2>
+          <label class="search-label" for="search">搜索</label>
+          <input id="search" type="search" placeholder="搜索标题、标签、概念、技能..." />
+          <div id="category-list" class="category-list" aria-label="知识分类"></div>
+        </section>
+
+        <section class="panel">
+          <h2>知识上下文</h2>
+          <div class="demo-state">
+            <span>当前知识</span>
+            <strong id="selected-title">加载中</strong>
+          </div>
+          <div class="demo-state">
+            <span>检索范围</span>
+            <strong id="filter-state">全部</strong>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>知识沉淀</h2>
+          <form id="submit-form" class="submit-form">
+            <label for="new-title">待沉淀内容</label>
+            <input id="new-title" type="text" placeholder="例如：第 2 周项目复盘" />
+            <label for="new-type">知识类型</label>
+            <select id="new-type">
+              <option value="course">课程</option>
+              <option value="challenge">挑战</option>
+              <option value="prompt">提示词</option>
+              <option value="project">项目案例</option>
+              <option value="faq">FAQ</option>
+            </select>
+            <button type="submit">生成知识卡片</button>
+            <p id="submit-result" class="submit-result">把课堂产出转成统一知识卡片，方便后续收录和复用。</p>
+          </form>
+        </section>
+      </aside>
+
+      <section class="entry-list-panel" aria-label="知识条目列表">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">知识仓库</p>
+            <h2>可复用知识</h2>
+          </div>
+          <span id="entry-count" class="count-pill">0 条</span>
+        </div>
+        <div id="entry-list" class="entry-list"></div>
+      </section>
+
+      <section class="detail-panel" aria-label="知识条目详情">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">知识详情</p>
+            <h2 id="detail-heading">学习与复用说明</h2>
+          </div>
+          <span class="count-pill">可复用</span>
+        </div>
+        <div id="entry-detail" class="entry-detail empty-state">
+          <h2>请选择一个知识条目</h2>
+          <p>选择左侧条目后，可以查看元数据、关系、概念、技能和知识增长流程。</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
