@@ -17,6 +17,7 @@ Situation -> Ontology -> Workflow -> Skill -> Task Agent -> Evaluation -> Knowle
 - `challenges/`: standard Challenge, Rubric, and submission templates
 - `agents/`: specifications for the first three task agents
 - `agents/manifests/`: MVP agent manifests aligned with the LLM Agent Interface direction
+- `examples/`: end-to-end cases that show how a Challenge becomes a Cognitive Cell
 - `knowledge-base/`: examples, FAQ, prompts, and reusable lessons
 - `governance/`: contribution and review rules
 
@@ -55,6 +56,7 @@ Start here:
 - `challenges/sample-challenge-01.md`: first sample Challenge
 - `agents/agent-collaboration-flow.md`: how the first three agents work together
 - `agents/manifests/`: machine-readable MVP Agent manifests
+- `examples/challenge-to-cognitive-cell-case/`: first end-to-end example
 - `.github/ISSUE_TEMPLATE/`: GitHub issue templates for Challenges and submissions
 - `reviews/evaluation-report-template.md`: standard review report format
 - `prompts/`: reusable prompts for the first three agents
