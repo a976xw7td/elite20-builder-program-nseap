@@ -1,4 +1,4 @@
-# Elite20 / AI+X 实验班一期背景与经验整理
+# 附录：Elite20 / AI+X 实验班一期背景与经验整理
 
 ## 1. 文档目的
 
@@ -7,7 +7,9 @@
 - `实验班1群`：选拔前后的开放群与挑战试炼过程
 - `精英班群`：正式入选后的 Elite20 / AI+X 实验班学习、项目、协作与成果推进过程
 
-本文不是逐条聊天记录摘录，而是用于二期 NSEAP / Elite20 Builder Program 设计的背景材料，重点回答：
+本文是 `phase2-builder-task-plan.md` 的背景附录，不是逐条聊天记录摘录。
+
+它用于支撑二期 NSEAP / Elite20 Builder Program 设计，重点回答：
 
 - 一期是如何从宣传、选拔、挑战走向正式实验班的？
 - 一期实际形成了哪些有效机制？
@@ -350,4 +352,3 @@ Richard 的文件中建议分为七个 Builder Team：
 - 标准 Knowledge Base
 
 最终目标是让二期不只是“再跑一次课程”，而是把一期探索出来的模式升级成可复制、可部署、可演化的 NSEAP AI Learning Operating System 参考实现。
-
