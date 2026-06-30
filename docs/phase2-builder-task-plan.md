@@ -228,7 +228,7 @@ https://github.com/a976xw7td/elite20-builder-program-nseap
 
 | 成员 | 模块 | 时间 |
 |---|---|---|
-| 暂未明确 | Demo / Presentation | 待定 |
+| 张浩 | Demo / Presentation | 7/1 |
 
 ## 5. GitHub 提交方式
 
