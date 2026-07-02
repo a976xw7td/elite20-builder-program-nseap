@@ -63,6 +63,7 @@ Start here:
 - `agents/agent-collaboration-flow.md`: how the first three agents work together
 - `agents/manifests/`: machine-readable MVP Agent manifests
 - `examples/challenge-to-cognitive-cell-case/`: first end-to-end example
+- `knowledge-base/knowledge-cognitive-cell/`: Knowledge Team MVP and product design
 - `.github/ISSUE_TEMPLATE/`: GitHub issue templates for Challenges and submissions
 - `reviews/evaluation-report-template.md`: standard review report format
 - `prompts/`: reusable prompts for the first three agents
