@@ -30,6 +30,7 @@ Markdown 知识源
 - 浏览知识条目
 - 按课程、挑战、提示词、项目、Agent 分类筛选
 - 搜索标题、标签、概念、技能、适用对象
+- 用真实 C2S 大数据项目案例测试搜索、分类和关系展示
 - 查看条目的 metadata、concepts、skills、relationships
 - 展示知识增长流程：场景 -> 本体 -> 流程 -> 技能 -> 评估 -> 学习 -> 知识增长
 - 从 Demo 跳回源 Markdown 文件
@@ -91,10 +92,13 @@ Tech-discussions：给我们内部工程路线，也就是 OKF + FDE Workbench +
 1. 打开 `app/index.html`。
 2. 展示知识条目列表。
 3. 按 Course / Challenge / Prompt / Project / Agent 筛选。
-4. 搜索 `assistant` 或 `prompt`。
-5. 打开 Challenge 条目，展示 audience、tags、concepts、skills、relationships。
-6. 展示“场景 -> 本体 -> 流程 -> 技能 -> 评估 -> 学习 -> 知识增长”。
-7. 点击源 Markdown，说明 Demo 背后是结构化知识源。
+4. 搜索 `大数据`，展示真实 C2S 项目案例和 Metadata-First 最佳实践。
+5. 搜索 `Metadata-First`，说明搜索优先匹配 metadata，而不是只扫全文。
+6. 搜索 `挑战`，说明系统会优先返回挑战条目，同时也能带出相关项目案例。
+7. 打开 C2S 项目案例，展示 audience、keywords、concepts、skills、relationships。
+8. 展示“场景 -> 本体 -> 流程 -> 技能 -> 评估 -> 学习 -> 知识增长”。
+9. 点击源 Markdown，说明 Demo 背后是结构化知识源。
+10. 打开 Metadata-First 最佳实践，说明项目经验可以沉淀成可复用规则。
 8. 打开 `docs/builder-workflow.md`，说明我们遵守老师的 Builder Workflow。
 9. 打开 `docs/nseap-technical-series-alignment.md`，说明 OKF + FDE Workbench 对齐。
 10. 结尾说明未来可升级为 Knowledge Librarian Agent。
@@ -103,6 +107,6 @@ Tech-discussions：给我们内部工程路线，也就是 OKF + FDE Workbench +
 
 我们第 6 组不是简单整理资料，而是做 Knowledge Cognitive Cell 的第一版 MVP。
 
-第一版我们没有追求收集全部课程内容，而是先做出一个能演示、能扩展、能提交 GitHub 的最小原型。它包含一个静态 Demo App、结构化知识源、知识条目模板、JSON Schema、Builder Workflow 和 GitHub 贡献流程。
+第一版我们没有追求收集全部课程内容，而是先做出一个能演示、能扩展、能提交 GitHub 的最小原型。它包含一个静态 Demo App、结构化知识源、真实 C2S 项目案例、知识条目模板、JSON Schema、Builder Workflow 和 GitHub 贡献流程。
 
 这个 MVP 当前是 L2 标准化知识库，正在为 L3 Agent-ready 知识库做准备。未来它可以接入知识图谱、Agent 检索、FDE Workbench，并演化为 Knowledge Librarian Agent。

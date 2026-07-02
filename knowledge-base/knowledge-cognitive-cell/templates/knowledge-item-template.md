@@ -1,22 +1,21 @@
-﻿---
-id: kb-category-000
-title: Entry Title
-type: course | challenge | prompt | faq | best-practice | project | agent | overview
+---
+# type 可选值: overview / course / challenge / prompt / faq / best-practice / project / agent
+id: kb-course-001
+title: 条目标题
+type: course
+summary: 用一句话说明这条知识解决什么问题，以及谁会在什么场景使用它。
 audience:
   - student
-  - teacher
-  - builder
-  - agent
-tags:
-  - tag-one
-  - tag-two
 keywords:
-  - user-search-keyword
-  - synonym-or-local-term
+  - 用户会搜索的词
+  - 类型词
+  - 核心对象词
+tags:
+  - 主题标签
 concepts:
-  - concept-one
+  - 核心概念
 skills:
-  - skill-one
+  - 核心技能
 related:
   - kb-related-001
 relationships:
@@ -24,66 +23,51 @@ relationships:
     target: kb-related-001
 status: draft
 updated: YYYY-MM-DD
+source: ../knowledge-base/01-course/your-entry.md
 ---
 
-# Entry Title
+# 条目标题
 
-## Purpose
+## 用途
 
-What problem does this knowledge item solve?
+这条知识解决什么问题？
 
-## When To Use
+## 适用对象与场景
 
-When should a student, teacher, builder, or agent use it?
+谁会在什么场景下使用它？
 
-## Situation
+## 场景 Situation
 
-What real learning, building, teaching, or project situation does this entry come from?
+这条知识来自什么真实学习、教学、构建或项目场景？
 
-## Ontology Notes
+## 本体 / 结构说明
 
-What concepts, entities, relationships, or rules does this entry involve?
+涉及哪些核心概念、对象、关系或规则？
 
-## Workflow Notes
+## 流程 Workflow
 
-What process, task flow, or usage path does this entry support?
+这条知识对应什么使用流程或任务路径？
 
-## Skill Notes
+## 技能 Skill
 
-What skill does this entry require, produce, or improve?
+这条知识需要、产出或强化什么能力？
 
-## Evaluation Notes
+## 评估 Evaluation
 
-How can the usefulness or quality of this entry be evaluated?
+如何判断这条知识是否有效、是否可复用？
 
-## Knowledge Growth
+## 知识增长 Knowledge Growth
 
-What should be reused, updated, or learned from this entry later?
+后续应该把哪些经验、FAQ、提示词、案例或技能节点继续沉淀下来？
 
-## Content
+## 详细内容
 
-Write the core knowledge here.
+在这里写正文。
 
-## Graph Notes
+## 相关关系
 
-Explain how this entry may become a future knowledge graph node.
-
-Useful relationship patterns:
-
-- `includes`: this entry includes another entry.
-- `requires`: this entry requires a concept or skill.
-- `supports`: this entry supports another course, challenge, project, or agent.
-- `assessedBy`: this entry is assessed by a rubric or evaluation item.
-- `usesPrompt`: this entry uses a prompt.
-
-## Example
-
-Add a concrete example if useful.
-
-## Related
-
-- Related item or file
+补充说明这条知识与其他条目的连接方式。
 
 ## Agent Notes
 
-How should an agent use this entry?
+如果以后接 Agent，这条知识在什么问题下应该被检索？

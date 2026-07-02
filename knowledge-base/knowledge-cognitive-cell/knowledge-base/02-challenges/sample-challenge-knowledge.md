@@ -1,114 +1,149 @@
-﻿---
+---
 id: kb-challenge-001
-title: Build Your First AI Assistant
+title: 构建你的第一个 AI 助手
 type: challenge
+summary: 面向第一周学习者的入门挑战，要求围绕一个真实场景设计小型 AI 助手，并提交提示词、示例对话和反思。
 audience:
   - student
   - teacher
   - agent
-tags:
-  - challenge
-  - ai-assistant
-  - prompt-engineering
 keywords:
   - 挑战
   - 任务
   - AI 助手
-  - AI Assistant
-  - prompt engineering
-concepts:
+  - 入门项目
+  - Challenge
+tags:
+  - challenge
   - ai-assistant
-  - prompt-engineering
-  - learning-task
+  - week-1
+concepts:
+  - 场景定义
+  - 角色设计
+  - 提示词工程
 skills:
-  - define-agent-role
-  - write-instruction-prompt
-  - evaluate-ai-output
+  - 拆解任务
+  - 编写系统提示
+  - 评估输出质量
 related:
   - kb-course-001
   - kb-prompt-001
 relationships:
-  - predicate: requires
-    target: prompt-engineering
-  - predicate: usesPrompt
-    target: kb-prompt-001
   - predicate: supports
     target: kb-course-001
+  - predicate: usesPrompt
+    target: kb-prompt-001
+  - predicate: requires
+    targetLabel: 提示词工程基础
 status: sample
-updated: 2026-06-28
+updated: 2026-07-01
+source: ../knowledge-base/02-challenges/sample-challenge-knowledge.md
 ---
 
-# Build Your First AI Assistant
+# 构建你的第一个 AI 助手
 
-## Purpose
+## 用途
 
-Help students create a simple AI assistant for a real learning or work task.
+这是一条面向新同学的入门挑战，用来帮助学习者第一次把“想法”变成一个可演示的小型 AI 助手，而不是只停留在聊天体验上。
 
-## Situation
+## 适用对象与场景
 
-A student needs to understand how AI agents are designed and wants to build one small assistant for a concrete scenario.
+适合刚进入课程的学生，也适合老师拿来做第一周挑战说明。后续如果接入 Agent，这条知识也可以作为“如何完成第一个 AI 助手挑战”的标准上下文。
 
-## Ontology Notes
+## 场景 Situation
 
-Key concepts include AI assistant, role definition, instruction prompt, example conversation, evaluation, and reflection.
+很多同学第一次接触这个项目时，会觉得“做 AI 助手”听起来很大，但不知道到底要交什么、从哪里开始。所以这条挑战要把任务拆清楚，让学生能围绕一个具体场景，比如背单词、复习代码、规划学习时间，做出一个小而完整的 AI 助手。
 
-## Workflow Notes
+## 本体 / 结构说明
+
+这条挑战涉及四个核心对象：
+
+1. 使用场景：助手到底服务什么问题。
+2. 助手角色：它是谁，负责什么，不负责什么。
+3. 提示词：它如何被指挥工作。
+4. 评估方式：怎么判断这个助手是不是有用。
+
+## 流程 Workflow
 
 ```text
-Choose situation
--> define assistant role
--> write instruction prompt
--> test conversation
--> evaluate output
--> revise prompt
--> submit reflection
+选择一个真实场景
+-> 定义助手角色与边界
+-> 编写系统提示或指令提示
+-> 测试 2 到 3 轮对话
+-> 观察输出问题
+-> 修改提示词
+-> 提交结果与反思
 ```
 
-## Skill Notes
+## 技能 Skill
 
-This challenge develops prompt engineering, agent role design, AI output evaluation, and reflective learning.
+完成这条挑战时，学生会练到三类关键能力：
 
-## Task
+- 场景拆解：把一个模糊想法变成具体任务。
+- 提示词编写：能清楚告诉 AI 要做什么、不该做什么。
+- 输出评估：不只看“能不能回答”，还看“回得有没有帮助”。
 
-Design an assistant that can help with one specific scenario, such as learning vocabulary, reviewing code, planning a study session, or answering course questions.
+## 评估 Evaluation
 
-## Deliverables
+这条挑战建议从下面四点判断是否完成得好：
 
-- Assistant description.
-- System prompt or instruction prompt.
-- Example conversation.
-- Short reflection on what worked and what should improve.
+1. 场景是否具体，不空泛。
+2. 助手角色是否清晰，有边界。
+3. 示例对话是否能体现这个助手真的在工作。
+4. 反思是否说明了你修改过什么、为什么修改。
 
-## Evaluation Notes
+## 知识增长 Knowledge Growth
 
-The challenge can be evaluated by clarity of use case, specificity of assistant behavior, usefulness of example conversation, and quality of reflection.
+这条挑战不是做完就结束，它还会继续回流到知识库：
 
-## Knowledge Growth
+- 好的提示词可以沉淀到提示词库。
+- 常见问题可以沉淀到 FAQ。
+- 优秀作品可以沉淀为项目案例。
+- 高频能力点可以沉淀为概念或技能节点。
 
-Reusable outputs should be added back into the Knowledge Cognitive Cell:
+## 详细内容
 
-- Good assistant prompts can become prompt-library entries.
-- Common mistakes can become FAQ entries.
-- Strong examples can become project cases.
-- Required skills can become future skill ontology nodes.
+### 任务说明
 
-## Rubric
+请你围绕一个真实的小场景，设计一个 AI 助手。这个助手不需要很复杂，但必须清楚说明：
 
-- Clear use case.
-- Specific assistant behavior.
-- Useful example conversation.
-- Reflection shows iteration.
+- 它服务谁；
+- 它解决什么问题；
+- 它会怎么回答；
+- 它不能越界做什么。
 
-## Graph Notes
+### 建议选题
 
-This entry can become a future `Challenge` or `LearningTask` node. It requires prompt engineering and connects to the Week 1 course unit.
+可以从下面这些方向里任选一个：
 
-## Common Mistakes
+- 帮助自己规划一周学习任务；
+- 帮助解释一段报错代码；
+- 帮助整理课堂笔记；
+- 帮助复习英语单词；
+- 帮助完成课程问题答疑。
 
-- The assistant role is too broad.
-- The prompt does not define boundaries.
-- The example conversation is too short to evaluate.
+### 交付要求
+
+至少提交下面 4 样东西：
+
+1. 助手简介：一句话说清它是谁、做什么。
+2. 提示词：你的系统提示或核心指令。
+3. 示例对话：至少 2 轮。
+4. 简短反思：你测试后改了什么、发现了什么问题。
+
+### 常见错误
+
+- 角色定义太大，比如“什么都能做”。
+- 提示词没有边界，导致回答发散。
+- 示例对话太短，看不出效果。
+- 只展示结果，不写反思和修改过程。
+
+## 相关关系
+
+- 这条挑战支持 `kb-course-001` 的 Week 1 课程导览。
+- 这条挑战可配合 `kb-prompt-001` 的提示词样例一起使用。
+- 它还依赖“提示词工程基础”这类前置能力。
 
 ## Agent Notes
 
-Retrieve this entry when a student asks how to complete the first AI assistant challenge.
+当学生问“第一个 AI 助手挑战怎么做”“这个挑战要交什么”“怎么判断我做得好不好”时，应优先检索这条知识，并同时联动相关提示词和课程条目一起返回。

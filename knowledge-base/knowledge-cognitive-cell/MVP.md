@@ -10,26 +10,35 @@ This version treats the Knowledge Base as a Static Cognitive Cell first. It prov
 
 ## Product MVP
 
-The MVP includes a static demo app in `app/`.
+The MVP now includes a lightweight frontend-backend demo.
+
+The backend uses a local JSON database in `data/knowledge-db.json`. The first database seed contains one real project case: the C2S big-data challenge case. The frontend in `app/index.html` loads knowledge entries from `/api/knowledge` first, uses `/api/search` for backend search, and falls back to embedded static data only when the API is unavailable.
 
 The app demonstrates:
 
 - Knowledge entry browsing.
 - Category filtering.
 - Search across title, tags, concepts, skills, and audience.
+- Real project case retrieval, including the C2S big-data challenge case.
 - Entry detail view.
 - Metadata inspection.
 - Relationship inspection.
 - Knowledge Growth Flow visualization.
 - Links back to source Markdown files.
+- Backend API retrieval.
+- Backend API search.
+- Local JSON database persistence for newly submitted draft knowledge.
 
 ## In Scope
 
 - Static demo app.
+- Lightweight Node.js backend.
+- Local JSON knowledge database.
 - Knowledge-base folder structure.
 - Standard metadata for knowledge entries.
 - Templates for common knowledge types.
 - Sample entries for course, challenge, prompt, FAQ, best practice, project, and agent knowledge.
+- A real C2S big-data project case and a Metadata-First best practice extracted from that case.
 - GitHub contribution workflow.
 - Builder Workflow mapping.
 - Basic JSON schemas.
@@ -42,6 +51,8 @@ The app demonstrates:
 - Full website or LMS integration.
 - User login or permissions.
 - Backend API.
+- Complex production backend API.
+- Production database.
 - Vector database implementation.
 - Complex knowledge graph implementation.
 - Automated grading system.
@@ -66,13 +77,13 @@ Version 1 is successful when another builder can:
 
 For the first demo, show:
 
-1. Open `app/index.html` through a local static server.
-2. Browse entries by category.
-3. Search for `prompt` or `assistant`.
-4. Open the Challenge entry and show metadata.
-5. Show concepts, skills, relationships, and Knowledge Growth Flow.
-6. Open the source Markdown link.
-7. Show `docs/builder-workflow.md`.
-8. Show `docs/cognitive-cell-alignment.md`.
-9. Show `docs/nseap-technical-series-alignment.md`.
+1. Run `npm run dev`.
+2. Open `http://127.0.0.1:8787/index.html`.
+3. Explain that the frontend is reading from `/api/knowledge`, not from hardcoded HTML.
+4. Show that the database currently contains one real C2S big-data project case.
+5. Search for `大数据` and show that `/api/search` returns the C2S project case.
+6. Search for `Metadata-First` and show that the same real project case is discoverable through metadata.
+7. Open the C2S project case and show metadata, concepts, skills, relationships, and Knowledge Growth Flow.
+8. Explain that future real examples can be inserted through the same data schema or POST API.
+9. Show `docs/builder-workflow.md`.
 10. Show the future Knowledge Librarian Agent idea.

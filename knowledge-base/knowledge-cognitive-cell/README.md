@@ -4,15 +4,99 @@
 
 我们的目标不是在第一版收集所有课程资料，而是设计并验证一个可以继续扩展为正式 Knowledge Repository 的 **知识认知细胞（Knowledge Cognitive Cell）产品方案**。
 
+## 轻量前后端 MVP
+
+当前推荐演示入口是轻量前后端版本：
+
+```bash
+cd nseap-knowledge-base
+npm run dev
+```
+
+然后打开：
+
+```text
+http://127.0.0.1:8787/index.html
+```
+
+这一版用于验证完整链路：
+
+```text
+前端页面
+-> 后端 API
+-> 本地 JSON 数据库
+-> 搜索与分类规则
+-> 返回结果给前端展示
+```
+
+当前数据库文件是：
+
+```text
+data/knowledge-db.json
+```
+
+v0.2 数据库里先只放一个真实案例：`C2S 大数据应用挑战项目案例`。这样演示时可以说明：这不是把资料写死在 HTML 里，而是后端从数据库读取真实项目案例，再通过接口交给前端展示和搜索。
+
+当前 API：
+
+```text
+GET  /api/health
+GET  /api/llm/status
+GET  /api/settings
+PATCH /api/settings
+GET  /api/knowledge
+GET  /api/search?q=大数据
+GET  /api/knowledge/kb-project-002
+PATCH /api/knowledge/:id
+DELETE /api/knowledge/:id
+POST /api/knowledge
+POST /api/upload
+```
+
+`POST /api/upload` 会把上传文件保存到 `data/uploads/`，同时生成一条 `draft` 知识草稿写入 `data/knowledge-db.json`。这对应正式系统里的第一步：先接收学生、老师或 Builder 的原始资料，再由 Knowledge Team 补充 metadata、关系和审核状态。
+
+`PATCH /api/knowledge/:id` 用来补充或修改草稿的 metadata，例如关键词、概念、技能、适用对象和状态。
+
+`DELETE /api/knowledge/:id` 用于在浏览详情页删除不需要保留的知识条目。MVP 阶段采用硬删除，正式版本建议升级为归档或回收站机制。
+
+### LLM 自动分类
+
+上传流程已经预留 LLM 分析层。没有配置 Key 时，系统会使用规则兜底生成草稿；配置 Key 后，上传带有可读正文的 `.txt`、`.md`、`.csv`、`.json` 等文件时，会调用 LLM 自动生成类型、摘要、关键词、概念、技能和适用对象。
+
+前端右上角“设置”可以配置 OpenAI-compatible 的 Base URL、模型名称和 API Key。后端会把本地运行配置保存到：
+
+```text
+data/runtime-config.json
+```
+
+页面只显示 Key 是否已配置，不会把 Key 明文返回给前端。
+
+Windows 命令行示例：
+
+```bat
+set LLM_API_KEY=你的key
+set LLM_MODEL=gpt-4o-mini
+npm run dev
+```
+
+也可以配置 OpenAI-compatible 服务：
+
+```bat
+set LLM_BASE_URL=https://api.openai.com/v1
+set LLM_API_KEY=你的key
+set LLM_MODEL=gpt-4o-mini
+npm run dev
+```
+
+当前轻量 MVP 对 `.docx`、`.pdf` 这类二进制文件只会保存文件并生成草稿；要让 LLM 读懂 Word/PDF 正文，下一步需要接入文件正文抽取器。
+
 ## Demo App
 
-当前 v0.1 MVP 入口是一个静态 Demo：
+静态 Demo 仍然保留为备用入口：
 
 ```text
 app/index.html
 ```
-
-说明：静态 Demo 是当前阶段的最小验证方式，用来展示知识模型、搜索、分类、关系和知识增长流程。正式设计目标不是停留在静态页面，而是后续升级为带后端、数据库和在线维护能力的 Knowledge Repository。
 
 它用于验证未来 FDE Workbench 中两个能力的产品逻辑：
 
@@ -36,7 +120,7 @@ node scripts/build-search-index.js
 
 以后新增知识文件时，不需要改前端搜索代码。只要在 Markdown frontmatter 中补充 `keywords`、`tags`、`concepts`、`skills` 等字段，然后重新生成搜索索引即可。
 
-本地运行方式：
+静态方式本地运行：
 
 ```bash
 cd nseap-knowledge-base/app

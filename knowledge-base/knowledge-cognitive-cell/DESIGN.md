@@ -88,6 +88,21 @@ Knowledge Repository
 └─ Concept / Skill 概念与技能节点
 ```
 
+### 6.1 当前标准提交类型
+
+虽然完整信息架构预留了 `Rubric`、`Concept`、`Skill` 等未来节点，但当前 Builder 可以直接创建并进入知识库的标准类型固定为 8 类。现阶段的 Markdown 模板、Schema、搜索索引和后端 API 都应以这 8 类为基线。
+
+| 类型 | 枚举值 | 主要内容 | 存放目录 |
+| --- | --- | --- | --- |
+| 概览 | `overview` | 系统说明、模块定位、总览、使用介绍 | `knowledge-base/00-overview/` |
+| 课程 | `course` | 周计划、学习目标、课程说明、教师引导 | `knowledge-base/01-course/` |
+| 挑战 | `challenge` | 任务目标、步骤、交付物、评分、常见错误 | `knowledge-base/02-challenges/` |
+| 提示词 | `prompt` | 可复用提示词模板、输入要求、输出预期 | `knowledge-base/03-prompts/` |
+| FAQ | `faq` | 常见问题与回答 | `knowledge-base/04-faq/` |
+| 最佳实践 | `best-practice` | 可复用方法、标准、工作原则 | `knowledge-base/05-best-practices/` |
+| 项目案例 | `project` | 项目示例、案例拆解、复盘、可借鉴成果 | `knowledge-base/06-projects/` |
+| Agent 上下文 | `agent` | Agent 角色、调用说明、上下文需求、限制说明 | `knowledge-base/07-agents/` |
+
 当前 MVP 已经实现其中的主要类别，后续后端版本应继续沿用这套分类，不应另起一套不兼容结构。
 
 ## 7. 核心产品流程
@@ -97,7 +112,7 @@ Knowledge Repository
 ```text
 用户输入问题或关键词
 -> 系统识别搜索意图
--> 优先匹配 keywords / title / tags / concepts / skills
+-> 优先匹配 keywords / title / type / tags / concepts / skills / audience
 -> 返回相关知识条目
 -> 用户进入详情页查看使用场景、流程、评价方式和相关条目
 ```
@@ -147,96 +162,38 @@ Agent 接收用户问题
 -> 更新知识仓库
 ```
 
-### 7.5 新知识分类规则
+## 8. 核心数据模型与知识条目标准
 
-Knowledge 模块不能依赖人工随意判断，也不能只靠固定样例维持分类。后续如果出现新的课程资料、项目产出、提示词、FAQ 或案例，必须先按统一规则转成标准化 KnowledgeItem。
+### 8.1 设计原则
 
-分类的核心原则是：**按知识用途分类，而不是按文件名称或文件格式分类**。
+KnowledgeItem 不是普通文章，而是结构化知识节点。当前 MVP、Markdown 模板、Schema、搜索索引和后端 API 都应遵守以下原则：
 
-判断一条新知识属于哪一类时，按下面问题依次判断：
+- 按用途分类，不按文件形式分类。
+- 先做 metadata-first search，再做全文搜索补充。
+- 页面和文档对用户使用中文表达，底层 `type`、`status`、`audience`、`predicate` 使用稳定英文枚举。
+- 保持当前 MVP 与后端字段一一映射，避免前端、文档、后端各自发展出不兼容结构。
 
-```text
-1. 它主要解决什么问题？
-2. 它主要给谁使用？
-3. 它在课程 / 挑战 / 项目 / 提示词 / FAQ 中起什么作用？
-4. 它是否可以被复用？
-5. 它涉及哪些概念、技能和关系？
-```
+### 8.2 字段分层标准
 
-推荐分类规则：
+为了兼顾当前 MVP 和后续后端落地，KnowledgeItem 字段分为三层：
 
-| 知识类型 | 判断标准 | 示例 |
+| 层级 | 目标 | 当前要求 |
 | --- | --- | --- |
-| `course` | 主要说明课程安排、学习目标、周计划、教学路径。 | Week 1 课程概览、学习目标说明。 |
-| `challenge` | 主要说明任务、挑战、提交要求、评分规则。 | 构建第一个 AI Assistant。 |
-| `prompt` | 主要是一段可复用的 AI 指令、对话模板或提示词模式。 | Coding Coach 提示词。 |
-| `faq` | 主要回答高频问题或疑惑。 | 学生如何提交作业？ |
-| `best-practice` | 主要总结方法、规范、经验或操作原则。 | 如何写清楚项目文档。 |
-| `project` | 主要记录具体项目、作品、案例、复盘。 | AI 学习助手项目案例。 |
-| `agent` | 主要描述 Agent 的角色、上下文、能力或使用说明。 | Knowledge Librarian Agent。 |
-| `rubric` | 主要描述评价标准、评分维度或检查清单。 | Challenge 评分 Rubric。 |
-| `overview` | 主要说明系统、模块或知识库整体背景。 | Knowledge Base Intro。 |
+| L1 最小必填 | 先让条目能入库、能被搜到 | `id`、`title`、`type`、`summary`、`audience`、`keywords`、`status`、`source` |
+| L2 标准字段 | 让条目更清晰、更好复用 | `tags`、`concepts`、`skills`、`related`、`relationships`、`situation`、`workflow`、`evaluation`、`knowledgeGrowth` |
+| L3 Agent / 后端字段 | 为关系、接口、检索解释和审计做准备 | `agentNotes`、`ontology`、`content`、`createdAt`、`updatedAt`、`createdBy`、`updatedBy` |
 
-如果一份资料同时符合多个类型，优先看它的**主要使用场景**：
+当前 MVP 至少要保证每条真实知识满足 L1。进入稳定知识库前，建议尽量补齐 L2。L3 字段则用于后续 Agent 接入和正式后端实现。
 
-```text
-如果它用于布置任务 -> challenge
-如果它用于展示完成后的作品 -> project
-如果它用于指导通用做法 -> best-practice
-如果它用于课程学习路径 -> course
-如果它用于 AI 调用或复用指令 -> prompt
-```
-
-每条新知识进入知识库时，必须补充 metadata：
-
-```text
-title          标题
-type           类型
-audience       适用对象
-keywords       用户可能搜索的关键词和同义词
-tags           主题标签
-concepts       涉及概念
-skills         涉及技能
-related        相关条目
-relationships  显式关系
-```
-
-新知识进入流程：
-
-```text
-新资料
--> 判断主要用途
--> 选择知识类型
--> 填写 metadata
--> 标注 keywords / tags / concepts / skills
--> 建立 relationships
--> 进入 review
--> 发布到知识库
--> 更新搜索索引
-```
-
-示例：
-
-如果新资料叫“学生如何完成第一个 AI 助手项目”，它可能看起来同时像课程、挑战和项目。分类时不看标题，而看主要用途：
-
-- 如果它是老师布置任务的说明，归为 `challenge`。
-- 如果它是学生完成后的作品复盘，归为 `project`。
-- 如果它是通用操作方法，归为 `best-practice`。
-- 如果它是第一周课程学习路径的一部分，归为 `course`。
-
-因此，Knowledge 模块不是简单把资料放进固定文件夹，而是通过“用途 + 对象 + 场景 + 可复用性 + 关系”把新内容转成可检索、可维护、可扩展的知识资产。
-
-## 8. 核心数据模型
-
-### 8.1 KnowledgeItem
+### 8.3 KnowledgeItem
 
 知识条目是系统核心实体。数据库、API、前端和 Agent 检索都应围绕它设计。
 
 ```text
 id                  稳定唯一 ID，例如 kb-challenge-001
 title               标题
-type                course / challenge / prompt / faq / best-practice / project / agent / overview / rubric
-status              draft / review / stable / deprecated
+type                overview / course / challenge / prompt / faq / best-practice / project / agent
+status              draft / review / stable / sample / deprecated
 summary             摘要
 content             Markdown 正文
 source              原始文件路径或内容来源
@@ -260,7 +217,31 @@ createdBy           创建者
 updatedBy           更新者
 ```
 
-### 8.2 Relationship
+当前阶段的最小必填字段为：
+
+```text
+id
+title
+type
+summary
+audience
+keywords
+status
+source
+```
+
+### 8.4 字段填写规则
+
+- `id`：统一格式为 `kb-{type}-{number}`，如 `kb-challenge-001`。编号部分建议固定为三位数字。
+- `title`：标题要让老师、组员或 Agent 一眼看懂，不使用“说明”“资料”“内容”这类模糊名称。
+- `audience`：底层统一使用 `student / teacher / builder / agent`，展示层再映射为中文。每条至少 1 个，最多建议 3 个。
+- `status`：统一使用 `draft / review / stable / sample / deprecated`。真实新增内容默认从 `draft` 开始。
+- `keywords`：建议每条填写 3 到 8 个，覆盖自然搜索词、类型词、场景词和核心对象词，必要时可补英文别名。
+- `tags / concepts / skills`：`tags` 偏主题归类，`concepts` 偏知识点，`skills` 偏动作和能力，三者不要混用。
+- `summary`：必须说明“这条知识是干什么的，以及谁会在什么场景用它”。
+- `source`：当前先记录源文件路径或内容来源，后续后端继续映射为原始 Markdown 路径、链接或上传来源。
+
+### 8.5 Relationship
 
 ```text
 id
@@ -286,7 +267,13 @@ assessedBy    被某评价标准评估
 
 关系必须是显式字段，不能只藏在正文里。这样未来才能支持知识图谱、推荐和 Agent 检索。
 
-### 8.3 SearchIndex
+当前建议：
+
+1. `challenge`、`prompt`、`project` 三类条目至少补 1 条显式关系。
+2. 关系目标优先写稳定 ID。
+3. 如果暂时还没有稳定 ID，可以先保留 `targetLabel`，后续再实体化连接。
+
+### 8.6 SearchIndex
 
 搜索索引应以 metadata 为主，全文为辅。
 
@@ -299,6 +286,7 @@ tags
 keywords
 concepts
 skills
+relationshipTargets
 headings
 summary
 contentPreview
@@ -310,15 +298,37 @@ updatedAt
 ```text
 keywords
 > title
+> type
 > tags
 > concepts
 > skills
-> type
 > audience
+> relationshipTargets
 > headings
 > summary
 > content
 ```
+
+这套优先级的目的是让用户搜“挑战”时，真正的挑战条目先被召回，而不是课程正文里碰巧提到“挑战”的其他文档排在前面。
+
+### 8.7 当前阶段最小验收标准
+
+一条知识在当前阶段可以认为“合格”，至少满足：
+
+1. 类型正确，目录正确。
+2. 标题清楚，不模糊。
+3. `summary` 能说清用途。
+4. `audience` 至少 1 个。
+5. `keywords` 至少 3 个。
+6. 搜索一个自然关键词时，它能被命中。
+7. `source` 可追溯。
+8. `status` 字段存在。
+
+如果要达到“可稳定复用”，建议再满足：
+
+1. 有 `tags`、`concepts`、`skills`。
+2. 有至少 1 条显式关系。
+3. 有 `situation`、`workflow`、`evaluation`、`knowledgeGrowth`。
 
 ## 9. 后端设计方案
 
@@ -476,8 +486,9 @@ GET    /api/export/markdown/{id}
 -> 标准化搜索词
 -> 匹配 keywords
 -> 匹配 title
+-> 匹配 type
 -> 匹配 tags / concepts / skills
--> 匹配 type / audience
+-> 匹配 audience / relationshipTargets / headings
 -> 必要时再匹配 summary / content
 -> 返回结果并标注 matchedFields
 ```
@@ -535,7 +546,11 @@ Agent Context 页
 - 知识详情
 - 关系展示
 - 知识增长流程
-- 知识卡片生成模拟
+- 文件上传生成知识草稿
+- 草稿 metadata 在线补充
+- 知识条目删除确认
+- LLM 自动分类配置入口
+- 界面主题切换
 
 后续正式产品应增加：
 
@@ -550,7 +565,7 @@ Agent Context 页
 
 ## 11. 当前 MVP 的角色
 
-当前上传的静态 MVP 是产品方案的 v0.1 验证版本。
+当前演示版本已经从静态 v0.1 升级为轻量前后端 v0.2。静态 Demo 仍可作为备用入口，但主要演示应使用 `npm run dev` 启动的版本。
 
 它验证的是：
 
@@ -559,6 +574,8 @@ Agent Context 页
 3. 关系字段是否能支撑知识关联。
 4. 知识增长流程是否能被用户理解。
 5. Markdown + metadata 是否能为后端提供清晰数据基础。
+6. 上传文件是否能进入后端数据库并形成可编辑草稿。
+7. LLM 配置是否能作为后续自动分类能力的接入点。
 
 它不代表最终系统不需要后端，也不代表正式产品只能用静态文件。
 
@@ -573,7 +590,10 @@ Agent Context 页
 | 搜索框 | `/api/knowledge-items?q=...` |
 | 详情面板 | `GET /api/knowledge-items/{id}` |
 | 关系展示 | `knowledge_relationships` |
-| 知识卡片模拟 | `POST /api/knowledge-items` |
+| 上传资料 | `POST /api/upload` + 原始文件存储 |
+| 草稿 metadata 编辑 | `PATCH /api/knowledge-items/{id}` |
+| 删除确认按钮 | `DELETE /api/knowledge-items/{id}` |
+| 模型设置面板 | `GET/PATCH /api/settings` + 运行配置 |
 
 ## 12. 与其他模块的关系
 

@@ -1,67 +1,73 @@
-﻿---
-id: kb-project-000
-title: Project Case Title
+---
+id: kb-project-001
+title: 项目案例标题
 type: project
+summary: 用一句话说明这个项目案例解决了什么问题，以及别人为什么值得参考它。
 audience:
   - student
-  - teacher
-  - builder
-  - agent
+keywords:
+  - 项目案例
+  - 场景词
+  - 核心对象词
 tags:
   - project-case
 concepts:
-  - concept-one
+  - 核心概念
 skills:
-  - skill-one
+  - 核心技能
 related:
   - kb-related-001
+relationships:
+  - predicate: supports
+    target: kb-related-001
 status: draft
 updated: YYYY-MM-DD
+source: ../knowledge-base/06-projects/your-project-case.md
 ---
 
-# Project Case Title
+# 项目案例标题
 
-## Purpose
+## 用途
 
-Why is this project useful?
+为什么这个项目案例值得被复用？
 
-## Situation
+## 场景 Situation
 
-What real situation or user problem does this project start from?
+这个项目从什么真实场景或用户问题出发？
 
-## Ontology
+## 本体 / 结构说明
 
-What key concepts, entities, and relationships are involved?
+涉及哪些关键概念、对象与关系？
 
-## Workflow
+## 流程 Workflow
 
-What process does the project follow?
+这个项目按什么过程推进？
 
-## Skills
+## 技能 Skills
 
-What skills are required or produced?
+需要或产出了哪些关键技能？
 
-## Solution
+## 解决方案 Solution
 
-How does the project solve the situation?
+项目如何解决前面的场景问题？
 
-## Deliverables
+## 交付物 Deliverables
 
-- Deliverable 1
-- Deliverable 2
+- 交付物 1
+- 交付物 2
 
-## Evaluation
+## 评估 Evaluation
 
-How should this project be evaluated?
+如何判断这个案例是否真的可复用、可借鉴？
 
-## Knowledge Growth
+## 知识增长 Knowledge Growth
 
-What reusable knowledge, prompts, workflows, skills, or ontology nodes should be added back into the Knowledge Cognitive Cell?
+哪些提示词、FAQ、流程、技能或结构化知识应该继续回流到知识库？
 
-## Reuse Notes
+## 复用说明 Reuse Notes
 
-How can others reuse this project?
+别人可以怎么借鉴和复用这个项目案例？
 
 ## Agent Notes
 
-How should an agent reference this project?
+如果以后接 Agent，它应该在什么问题下引用这个项目案例？

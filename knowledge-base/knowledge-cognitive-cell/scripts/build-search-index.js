@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { execFileSync } = require("child_process");
 
 const rootDir = path.resolve(__dirname, "..");
 const knowledgeDir = path.join(rootDir, "knowledge-base");
@@ -109,3 +110,15 @@ const index = walkMarkdownFiles(knowledgeDir)
 
 fs.writeFileSync(outputPath, `${JSON.stringify(index, null, 2)}\n`, "utf8");
 console.log(`Built ${index.length} search index items -> ${path.relative(rootDir, outputPath)}`);
+
+execFileSync(
+  process.execPath,
+  [path.join(__dirname, "build-knowledge-data.js")],
+  { stdio: "inherit" }
+);
+
+execFileSync(
+  process.execPath,
+  [path.join(__dirname, "build-embedded-data.js")],
+  { stdio: "inherit" }
+);
